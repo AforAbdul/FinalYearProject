@@ -13,6 +13,8 @@ import {
   CLEAR_ERRORS,
 } from "../constants/categoryConstants";
 
+const API_URL = "http://projectorate.org:3005";
+
 export const newCategory = (formData) => async (dispatch) => {
   try {
     dispatch({ type: NEW_CATRGORY_REQUEST });
@@ -24,7 +26,7 @@ export const newCategory = (formData) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `/api/v1/super-admin/genres/addgenre`,
+      `${API_URL}/api/v1/super-admin/genres/addgenre`,
       formData,
       config
     );
@@ -44,7 +46,7 @@ export const getCategory = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_CATEGORY_REQUEST });
 
-    const { data } = await axios.get("/api/v1/genres");
+    const { data } = await axios.get(`${API_URL}/api/v1/genres`);
 
     dispatch({
       type: ALL_CATEGORY_SUCCESS,
@@ -63,7 +65,7 @@ export const dltCategory = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_CATEGORY_REQUEST });
 
-    const { data } = await axios.delete(`/api/v1/movies/${id}`);
+    const { data } = await axios.delete(`${API_URL}/api/v1/movies/${id}`);
 
     dispatch({
       type: DELETE_CATEGORY_SUCCESS,
